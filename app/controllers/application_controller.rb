@@ -6,8 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
 def application 
-@user = User.find(params[:id])
-@user_id = @user.id
+
 
 end  
 

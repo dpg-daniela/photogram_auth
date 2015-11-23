@@ -14,19 +14,26 @@
 
 
 <div class="row">
+
+
   <div class="col-md-8 col-md-offset-2">
+   
+    <% @photos.each do |photo| %>
+    
+
     <div class="panel panel-default">
  
-    <% @photos.each do |photo| %>
+   
       <div class="panel-heading">
 
         <h3 class="panel-title">
 
-        <a href="/users/<%= photo.id %>"><%= photo.user %></a>
+        <a href="/users/<%= photo.id %>"><% if photo.user == nil %>Missing User<% else %><%= photo.user.username %></a><% end %>
           <small>
-            3 days ago
+            <%= time_ago_in_words(Time.now) %>
           </small>
         </h3>
+        <%= photo.comments.pluck(:body).to_sentence %>
       </div>
 
 <div class="panel-body">
@@ -35,17 +42,62 @@
         </a>
 </div>
 
+
 <p>
    <a href="/delete_like/<%= photo.id %>" class="btn btn-link">
+
+
       <i class="fa fa-heart"></i>
    </a>
             carol and alice
             like
             this
         </p>
+  <ul class="media-list">
+
+  <% @comments.each do |comment| %>
+
+          <li class="media">
+            <div class="media-body">
+              <h6 class="media-heading">
+                <a href="/users/13"><%= comment.user.username %></a>
+                <small>
+                  <%= time_ago_in_words(Time.now) %>
+                </small>
+              </h6>
+              <%= comment.body %>
+            </div>
+          </li>
+
+  <li class="media">
+            <div class="media-body">
+              <form action="/create_comment" method="post">
+                <!-- Hidden input for authenticity token to protect from forgery -->
+                <input name="authenticity_token" type="hidden" value="PcjSkRjrAX9TV0aPVelmMgF3vF9I1UBnGvPRL18P7jz8YCwQ2DZyGnSfTBL8Jlr4Q3vKmuSs/Gh/s5PY2caTIw==">
+
+                <input type="hidden" name="photo_id" value="23">
+
+                <input type="hidden" name="user_id" value="1">
+
+                <!-- Label and input for body -->
+                <div class="form-group">
+                  <label for="body" class="sr-only">
+                    Body
+                  </label>
+
+                  <input type="text" id="body" name="body" placeholder="Add a comment..." class="form-control" required>
+                </div>
+              </form>
+            </div>
+          </li>
+          </ul>
+
       
-    
+    <% end %>
       <% end %>
     </table>
   </div>
 </div>
+</div>
+</div>
+
