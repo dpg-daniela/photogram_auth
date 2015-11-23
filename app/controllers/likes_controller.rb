@@ -1,6 +1,8 @@
 class LikesController < ApplicationController
   def index
     @likes = Like.all
+    @photos = Photo.all
+
   end
 
   def show

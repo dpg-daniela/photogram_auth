@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  # Routes for the Photo resource:
+  # Routes for the Liked_photos resource:
   # READ
   get "/my_likes", :controller => "liked_photos", :action => "index"
   

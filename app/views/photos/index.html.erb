@@ -30,7 +30,7 @@
 
         <a href="/users/<%= photo.id %>"><% if photo.user == nil %>Missing User<% else %><%= photo.user.username %></a><% end %>
           <small>
-            <%= time_ago_in_words(Time.now) %>
+            <%= time_ago_in_words(photo.created_at) %>
           </small>
         </h3>
       </div>
@@ -43,11 +43,10 @@
 
 
 <p>
-   <a href="/delete_like/<%= photo.id %>" class="btn btn-link">
-
-
-      <i class="fa fa-heart"></i>
-   </a>
+<%if photo.likes.find_by(user_id: current_user.id).present? %><a href="/create_like/<%= photo.id %>" class="fa fa-heart-o"></a>
+            <%else%><a href="/delete_like/<%= photo.id %>" class="fa fa-heart"></a>
+            <%end%>
+   
             carol and alice
             like
             this
@@ -93,11 +92,15 @@
             </div>
           </li>
           </ul>
-      <% end %>
+      
 
     </table>
   </div>
+  <% end %>
 </div>
+
 </div>
+
 </div>
+
 
