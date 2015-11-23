@@ -1,0 +1,21 @@
+<div class="container">
+
+
+    <div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+    <% @liked_photos.each do |liked_photo| %>
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <a href="/photos/1>"><%= current_user.username %></a>
+          <small>
+            3 days ago
+          </small>
+        </h3>
+      </div>
+
+      <div class="panel-body">
+        <a href="/photos/12">
+          <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Mostar_Old_Town_Panorama_2007.jpg/1280px-Mostar_Old_Town_Panorama_2007.jpg" class="img-responsive">
+        </a>
+        <% end %>

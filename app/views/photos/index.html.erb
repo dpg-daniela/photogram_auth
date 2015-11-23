@@ -1,0 +1,51 @@
+<div class="container">
+
+
+
+    <div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <a href="/photos/new" class="btn btn-default btn-block">
+      <i class="fa fa-plus"></i>
+    </a>
+    <hr>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+ 
+    <% @photos.each do |photo| %>
+      <div class="panel-heading">
+
+        <h3 class="panel-title">
+
+        <a href="/users/<%= photo.id %>"><%= photo.user %></a>
+          <small>
+            3 days ago
+          </small>
+        </h3>
+      </div>
+
+<div class="panel-body">
+        <a href="/photos/<%= photo.id %>">
+          <img src="<%= photo.image %>" class="img-responsive">
+        </a>
+</div>
+
+<p>
+   <a href="/delete_like/<%= photo.id %>" class="btn btn-link">
+      <i class="fa fa-heart"></i>
+   </a>
+            carol and alice
+            like
+            this
+        </p>
+      
+    
+      <% end %>
+    </table>
+  </div>
+</div>
